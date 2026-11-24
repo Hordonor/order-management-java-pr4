@@ -10,7 +10,9 @@ import ua.edu.dut.order.processing.service.ProductFactory;
 import ua.edu.dut.order.storage.api.OrderRepository;
 import ua.edu.dut.order.threading.api.OrderThreadManager;
 
+import java.io.PrintStream;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Main {
@@ -18,6 +20,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
+        System.setErr(new PrintStream(System.err, true, StandardCharsets.UTF_8));
         ProductFactory productFactory = new ProductFactory();
         List<Product> products = productFactory.createSampleProducts();
         List<OrderProcessor<? extends Product>> processors = products.stream()
